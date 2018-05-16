@@ -1,19 +1,17 @@
 require('mocha');
-expect = require('chai').expect;
-should = require('chai').should();
-var stdout = require("test-console").stdout;
-var stderr = require("test-console").stderr;
-var resolve = require('path').resolve;
 const assert = require('assert');
+import { expect } from 'chai';
+import {should} from 'chai';
+import {stdout} from "test-console";
 
-var restoreStdout;
+let restoreStdout;
 
-var needlemanW= require('../lib/needlemanW');
+import needlemanW from '../lib/needlemanW';
 
 describe('#Align an unaligned sequence file', function () {
     it('should execute command with no error', function (done) {
-        var inspect = stdout.inspect();
-        needlemanW.alignFile('test/samples/example.fasta',2,-2,-10,function(err){
+        const inspect = stdout.inspect();
+        needlemanW.alignFile('src/test/samples/example.fasta',2,-2,-10,function(err){
             if (err) {
                 console.log(err);
             }
@@ -27,8 +25,8 @@ describe('#Align an unaligned sequence file', function () {
     });
 
     it('should give message that file does not exist', function (done) {
-        var inspect = stdout.inspect();
-        needlemanW.alignFile('test/samples/examples.fasta',2,-2,-10,function(err){
+        const inspect = stdout.inspect();
+        needlemanW.alignFile('src/test/samples/examples.fasta',2,-2,-10,function(err){
             if (err) {
                 console.log(err);
             }
@@ -44,8 +42,8 @@ describe('#Align an unaligned sequence file', function () {
 
 describe('#Align an unaligned sequence file and return scores with alignment', function () {
     it('should execute command with no error', function (done) {
-        var inspect = stdout.inspect();
-        needlemanW.alignFileGetScore('test/samples/example.fasta',2,-2,-10,function(err){
+        const inspect = stdout.inspect();
+        needlemanW.alignFileGetScore('src/test/samples/example.fasta',2,-2,-10,function(err){
             if (err) {
                 console.log(err);
             }
@@ -61,8 +59,8 @@ describe('#Align an unaligned sequence file and return scores with alignment', f
 
 describe('#Align an unaligned sequence file and return score matrices with alignment', function () {
     it('should execute command with no error', function (done) {
-        var inspect = stdout.inspect();
-        needlemanW.alignFileGetScore('test/samples/example.fasta',2,-2,-10,function(err){
+        const inspect = stdout.inspect();
+        needlemanW.alignFileGetScore('src/test/samples/example.fasta',2,-2,-10,function(err){
             if (err) {
                 console.log(err);
             }
@@ -78,9 +76,9 @@ describe('#Align an unaligned sequence file and return score matrices with align
 
 describe('#Align a pair of sequence inputs', function () {
     it('should execute command with no error', function (done) {
-        var inspect = stdout.inspect();
-        var sequence1 = 'AADBFGTRHYSRRFDERSGVSDEAERSG';
-        var sequence2 = 'AADGTDRSYSRFFDERTSDNDBSHRDSG';
+        let inspect = stdout.inspect();
+        let sequence1 = 'AADBFGTRHYSRRFDERSGVSDEAERSG';
+        let sequence2 = 'AADGTDRSYSRFFDERTSDNDBSHRDSG';
         needlemanW.alignPair(sequence1,sequence2,2,-2,-10,function(err){
             if (err) {
                 console.log(err);
@@ -98,9 +96,9 @@ describe('#Align a pair of sequence inputs', function () {
 
 describe('#Align a pair of sequence inputs and return score with alignment', function () {
     it('should execute command with no error', function (done) {
-        var inspect = stdout.inspect();
-        var sequence1 = 'AADBFGTRHYSRRFDERSGVSDEAERSG';
-        var sequence2 = 'AADGTDRSYSRFFDERTSDNDBSHRDSG';
+        let inspect = stdout.inspect();
+        let sequence1 = 'AADBFGTRHYSRRFDERSGVSDEAERSG';
+        let sequence2 = 'AADGTDRSYSRFFDERTSDNDBSHRDSG';
         needlemanW.alignPairGetScore(sequence1,sequence2,2,-2,-10,function(err){
             if (err) {
                 console.log(err);
@@ -117,9 +115,9 @@ describe('#Align a pair of sequence inputs and return score with alignment', fun
 
 describe('#Align a pair of sequence inputs and return score matrix with alignment', function () {
     it('should execute command with no error', function (done) {
-        var inspect = stdout.inspect();
-        var sequence1 = 'AADBFGTRHYSRRFDERSGVSDEAERSG';
-        var sequence2 = 'AADGTDRSYSRFFDERTSDNDBSHRDSG';
+        let inspect = stdout.inspect();
+        let sequence1 = 'AADBFGTRHYSRRFDERSGVSDEAERSG';
+        let sequence2 = 'AADGTDRSYSRFFDERTSDNDBSHRDSG';
         needlemanW.alignPairGetMatrix(sequence1,sequence2,2,-2,-10,function(err){
             if (err) {
                 console.log(err);
